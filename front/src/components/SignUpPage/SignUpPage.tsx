@@ -1,6 +1,4 @@
-import ReactDOM from "react-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { NavLink } from "react-router-dom";
 import { registration } from "../../action/user";
 import { s } from './';
 

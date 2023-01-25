@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const deleteUser = async(checked:string)=>{
+export const deleteUser = async(checked:string[])=>{
     try{
         const response = await axios.post("http://localhost:5000/api/auth/delete",{
           checked
@@ -14,7 +14,7 @@ export const deleteUser = async(checked:string)=>{
    
 }
 
-export const blockUser = async(checked:string)=>{
+export const blockUser = async(checked:string[])=>{
   try{
       const response = await axios.post("http://localhost:5000/api/auth/block",{
         checked
@@ -27,7 +27,7 @@ export const blockUser = async(checked:string)=>{
   }
  
 }
-export const unblockUser = async(checked:string)=>{
+export const unblockUser = async(checked:string[])=>{
 try{
     const response = await axios.post("http://localhost:5000/api/auth/unblock",{
       checked

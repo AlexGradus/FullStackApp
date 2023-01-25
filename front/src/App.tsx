@@ -5,13 +5,13 @@ import SignUpPage from './components/SignUpPage';
 import SignInPage from './components/SignInPage';
 import { useDispatch, useSelector } from 'react-redux';
 import { Authorization } from './action/user';
-import { MyState } from './interface/interface';
+import { IMyState } from './interface/interface';
 
 function App() {
-  const Auth = useSelector((state:MyState)=>state.app.isAuth);
+  const Auth = useSelector((state:IMyState)=>state.app.isAuth);
   const dispatch = useDispatch();
   useEffect(()=>{
-  dispatch(Authorization());
+ ( (dispatch as any)(Authorization()));
   },[])
   return (
     <BrowserRouter>

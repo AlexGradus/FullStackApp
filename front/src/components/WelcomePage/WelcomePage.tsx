@@ -1,10 +1,8 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { MyState } from '../../interface/interface';
+import { IMyState } from '../../interface/interface';
 import { logout } from '../../store/appReducer';
 import UserList from '../userList';
-
 import { s } from './';
 
 
@@ -12,7 +10,7 @@ import { s } from './';
 
 
 const WelcomePage = () => {
-  const Auth = useSelector((state:MyState)=>state.app.isAuth);
+  const Auth = useSelector((state:IMyState)=>state.app.isAuth);
 
   const dispatch = useDispatch();
   return (

@@ -9,6 +9,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { blockUser, deleteUser, unblockUser } from '../../api/api';
 import { logout } from '../../store/appReducer';
 import { useDispatch } from 'react-redux';
+import { IuserData } from '../../interface/interface';
 
 
 
@@ -24,14 +25,12 @@ const columns: GridColDef[] = [
 
 
 
-
 const UserList = ()=> {
 
-  const [userData, setUserData] = useState([]);
-  const [ checkedData, setcheckedData] = useState([]);
-  const [currentUser,setCurrentUser] = useState([]);
+  const [userData, setUserData] = useState([] as IuserData[]);
+  const [ checkedData, setCheckedData] = useState<string[]>([]);
+  const [currentUser,setCurrentUser] = useState('');
   const dispatch = useDispatch();
-  
 
   function getUsers(){
     try{
@@ -62,15 +61,13 @@ const UserList = ()=> {
     } 
   }
   }
-  useEffect(()=>{
-    getUsers();
-    },[userData])
+ 
   useEffect(()=>{
       getCurrentuser();
       },[])
 
     
-  const rowsData = userData.map((elem,index)=>({
+  const rowsData = userData.map((elem: { _id: string; name: string; email: string; createdAt: string; updatedAt: string; block: string; })=>({
     id:elem._id,
     name:elem.name,
     email:elem.email,
@@ -101,6 +98,9 @@ const UserList = ()=> {
     unblockUser(checkedData);
     getUsers();
   }
+  useEffect(()=>{
+    getUsers();
+    },[deleteUsers,blockUsers,unBlockUsers])
   return (
     <>
     <div className={s.toolbar}>
@@ -121,7 +121,7 @@ const UserList = ()=> {
         rowsPerPageOptions={[5]}
         checkboxSelection
         onSelectionModelChange={(id)=>{
-          setcheckedData(id)
+          setCheckedData(id as string[])
         }} />
     </div></>
   );

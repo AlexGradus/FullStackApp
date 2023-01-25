@@ -2,16 +2,12 @@ import { s } from './';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch } from 'react-redux';
 import { login } from '../../action/user';
-interface IFormInput {
-  email: string;
-  password: string;
-  name: string;
-}
+import { IFormInput } from '../../interface/interface';
 
 const SignInPage = () =>{
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data )=> dispatch(login(data.email,data.password,data.name));
+  const onSubmit: SubmitHandler<IFormInput> = (data )=> ((dispatch as any)(login(data.email,data.password,data.name)));
    
   return (
     
